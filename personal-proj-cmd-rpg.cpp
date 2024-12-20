@@ -1,11 +1,60 @@
-// personal-proj-cmd-rpg.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+#include "Game.h"
+/*
+https://finalfantasy.fandom.com/wiki/Final_Fantasy
+https://www.rpgsite.net/feature/11509-final-fantasy-1-job-classes-ff1-character-class-list-and-best-team-party-options
+C++ rpg project:
 
+class Character{
+private:
+	string name;
+	int health;
+	int defence;
+// * Adding a lvl system later on for character and enemy
+//	int lvl;
+//	int experience
+public:
+}
+
+class Enemy{
+	string name;
+	int hp;
+	int defence;
+}
+
+class Classes{
+	string name;
+}
+
+enum ClassTypes{
+	// Fighter: start - 35 HP / 10 Damage, Thief: start - 30 HP / 2 Damage, Mage: start -  28 HP / 2 Damage 
+}
+
+class Attack{
+	string name;
+	type;
+	// Type: fight, run, magic, drink, item
+}
+
+enum AttackTypes{
+	Fight,
+	Run,
+	// Later on: magic, drink, item
+}
+
+class Battle{}
+
+ class Game{
+// input handling, output display, game loop, menus, game state
+}
+
+*/
 #include <iostream>
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	Game newTest;
+	newTest.startMenu();
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
