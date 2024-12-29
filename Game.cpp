@@ -4,10 +4,18 @@
 Game::Game() {};
 
 void Game::startGame() {
-	std::cout << "Welcome to the character creation screen" << std::endl;
-	//std::vector<Character> characters;
-	std::vector<Character> characters;
-	// Loop through and create characters and add them to the vector
+	std::vector<Character> s;
+	Character standard("", 0, 0, 0, 0, 0, 0, WARRIOR);
+
+	std::vector<Character> chars;
+
+	chars = standard.createChar();
+
+	for (int i = 0; i < chars.size(); i++)
+	{
+		std::cout << "Name: " << chars[i].name << std::endl;
+		std::cout << "Spec: " << chars[i].spec << std::endl;
+	}
 
 };
 
@@ -24,14 +32,14 @@ void Game::startMenu() {
 		std::cout << "Wrong choice, try again:" << std::endl;
 		std::cin >> choice;
 	}
-	if (choice >= 1 && choice <= 2) {
+	if (choice >= 1 || choice <= 2) {
 		switch (choice)
 		{
 		case 1:
 			startGame();
 			break;
 		case 2:
-			std::cout << "Goodbye "<< std::endl;
+			std::cout << "Goodbye " << std::endl;
 			break;
 		default:
 			break;

@@ -4,23 +4,22 @@
 #define CHARACTER_H
 #include <string>
 #include <iostream>
-#include "specialization.h"
+#include <vector>
+
+enum Specs {
+	WARRIOR = 1,
+	THIEF,
+	MAGE
+};
 
 class Character {
 private:
-	std::string name;
-	int health;
-	int mana;
-	int defence;
-	// For warrior
-	int strength;
-	// for theif
-	int agility;
-	// for mage
-	int intelligence;
-	Specialization spec;
 public:
-	Character(std::string name, int health, int mana, int defence, int stength, int agility, int intelligence, Specialization spec);
+	std::string name;
+	int health, mana, defence, strength, agility, intelligence;
+	Specs spec;
+	Character(std::string name, int health, int mana, int defence, int strength, int agility, int intelligence, Specs spec);
+	std::vector<Character> createChar();
 };
 
 #endif 
