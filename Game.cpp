@@ -1,21 +1,26 @@
 #include "Game.h"
 #include "Character.h"
+#include "Move.h"
 
 Game::Game() {};
 
 void Game::startGame() {
 	std::vector<Character> s;
-	Character standard("", 0, 0, 0, 0, 0, 0, WARRIOR);
+	Character templateChar("", 0, 0, 0, 0, 0, 0, WARRIOR);
 
 	std::vector<Character> chars;
 
-	chars = standard.createChar();
+	chars = templateChar.createChar();
 
 	for (int i = 0; i < chars.size(); i++)
 	{
 		std::cout << "Name: " << chars[i].name << std::endl;
 		std::cout << "Spec: " << chars[i].spec << std::endl;
+		std::cout << "Moves:" << std::endl;
 	}
+	// Call the get move func that will be created later and show current moves
+
+
 
 };
 

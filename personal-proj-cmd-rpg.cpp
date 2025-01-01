@@ -1,8 +1,33 @@
 #include "Game.h"
 /*
-https://finalfantasy.fandom.com/wiki/Final_Fantasy
-https://www.rpgsite.net/feature/11509-final-fantasy-1-job-classes-ff1-character-class-list-and-best-team-party-options
+https://finalfantasy.fandom.com/wiki/Category:Final_Fantasy
+https://finalfantasy.fandom.com/wiki/Battle_system
+https://finalfantasy.fandom.com/wiki/Category:Abilities_in_Final_Fantasy
+https://finalfantasy.fandom.com/wiki/Final_Fantasy_jobs
 C++ rpg project:
+
+
+// Damage:
+Physical damage = strength * weapon power - defence (target defence)
+Magic Damage = intelligence * spell power - defebce (target defence)
+
+Warrior:
+Attack: Basic physical attack.
+Defend: Reduces damage taken in the next turn.
+Use Items: Can use healing items or other consumables.
+
+Thief:
+Attack: Basic physical attack, often with a higher chance to land critical hits.
+Flee: Increased chance to escape from battles.
+
+Combat Mage :
+Fire, Ice, Lightning Spells: Basic elemental magic attacks.
+Use Items: Can use items.
+
+Healer:
+Heal Spells: Heal allies or remove negative status effects.
+Protect Spells: Buff allies with defensive spells.
+Use Items: Can use items.
 
 class Character{
 private:
