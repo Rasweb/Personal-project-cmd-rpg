@@ -42,22 +42,6 @@ std::vector<Character> Character::createChar() {
 	std::string name;
 	int specChoice, baseHealth, baseMana, baseStrength, baseAgility, baseIntelligence, baseDefence;
 
-	Move WrMove1("Strike", SINGLE);
-	Move WrMove3("Shield Block", BLOCK);
-	Move WrMove2("Cleave", MULTIPLE);
-
-	Move TfMove1("Backstab", SINGLE);
-	Move TfMove3("Flurry of Blows", MULTIPLE);
-	Move TfMove2("Dodge", BLOCK);
-
-	Move CmMove1("Firebolt", SINGLE);
-	Move CmMove3("Chain Lightning", MULTIPLE);
-	Move CmMove2("Magical Barrier", BLOCK);
-
-	Move HrMove1("Holy Smite", SINGLE);
-	Move HrMove2("Protective Ward", BLOCK);
-	Move HrMove3("Area Heal", MULTIPLE);
-
 	for (int i = 0; i < charNumb; i++)
 	{
 		std::cout << "Enter a name " << std::endl;
@@ -70,70 +54,115 @@ std::vector<Character> Character::createChar() {
 		if (specChoice < 1 || specChoice > 4) {
 			std::cout << "That option dosent exist" << std::endl;
 		}
-		enum Spec s = static_cast<Spec>(specChoice);
+		Specs s = static_cast<Specs>(specChoice);
 
-		if (s == 1) {
+		switch (s) {
+		case WARRIOR:
 			baseHealth = 35;
 			baseMana = 10;
 			baseStrength = 20;
 			baseAgility = 15;
 			baseIntelligence = 5;
 			baseDefence = 10;
-
-			Character newChar(name, baseHealth, baseMana, baseDefence, baseStrength, baseAgility, baseIntelligence, WARRIOR);
-			
-			newChar.addMoves(&WrMove1);
-			newChar.addMoves(&WrMove2);
-			newChar.addMoves(&WrMove3);
-
-
-			characters.push_back(newChar);
-
-		}
-		else if (s == 2) {
+			break;
+		case THIEF:
 			baseHealth = 30;
 			baseMana = 12;
 			baseStrength = 15;
 			baseAgility = 20;
 			baseIntelligence = 8;
 			baseDefence = 5;
-
-			Character newChar(name, baseHealth, baseMana, baseDefence, baseStrength, baseAgility, baseIntelligence, THIEF);
-			newChar.addMoves(&TfMove1);
-			newChar.addMoves(&TfMove2);
-			newChar.addMoves(&TfMove3);
-			characters.push_back(newChar);
-		}
-		else if(s == 3) {
+			break;
+		case COMBAT_MAGE:
+			break;
+		case HEALER:
 			baseHealth = 28;
 			baseMana = 30;
 			baseStrength = 5;
 			baseAgility = 10;
 			baseIntelligence = 20;
 			baseDefence = 2;
-
-			Character newChar(name, baseHealth, baseMana, baseDefence, baseStrength, baseAgility, baseIntelligence, COMBAT_MAGE);
-			newChar.addMoves(&CmMove1);
-			newChar.addMoves(&CmMove2);
-			newChar.addMoves(&CmMove3);
-			characters.push_back(newChar);
+			break;
 		}
-		else {
+
+		Character newChar(name, baseHealth, baseMana, baseDefence, baseStrength, baseAgility, baseIntelligence, s);
+
+		switch (s)
+		{
+		case WARRIOR:
+			newChar.addMoves(new Move("Strike", SINGLE));
+			newChar.addMoves(new Move("Cleave", MULTIPLE));
+			newChar.addMoves(new Move("Shield Block", BLOCK));
+			break;
+		case THIEF:
+			newChar.addMoves(new Move("Backstab", SINGLE));
+			newChar.addMoves(new Move("Flurry of Blows", MULTIPLE));
+			newChar.addMoves(new Move("Dodge", BLOCK));
+			break;
+		case COMBAT_MAGE:
+			newChar.addMoves(new Move("Firebolt", SINGLE));
+			newChar.addMoves(new Move("Chain Lightning", MULTIPLE));
+			newChar.addMoves(new Move("Magical Barrier", BLOCK));
+			break;
+		case HEALER:
 			baseHealth = 30;
 			baseMana = 28;
 			baseStrength = 5;
 			baseAgility = 10;
 			baseIntelligence = 18;
 			baseDefence = 3;
-
-			Character newChar(name, baseHealth, baseMana, baseDefence, baseStrength, baseAgility, baseIntelligence, HEALER);
-			newChar.addMoves(&HrMove1);
-			newChar.addMoves(&HrMove2);
-			newChar.addMoves(&HrMove3);
-			characters.push_back(newChar);
-
+		
+			newChar.addMoves(new Move("Holy Smite", SINGLE));
+			newChar.addMoves(new Move("Protective Ward", MULTIPLE));
+			newChar.addMoves(new Move("Area Heal", BLOCK));
+			break;
+		default:
+			break;
 		}
+		characters.push_back(newChar);
 	}
 	return characters;
 
 };
+
+void Character::specCheck(std::vector<Character> chars, int index) {
+	switch (chars[index].spec)
+	{
+	case WARRIOR:
+		std::cout << "Spec: Warrior" << std::endl;
+		break;
+	case THIEF:
+		std::cout << "Spec: Theif" << std::endl;
+		break;
+	case COMBAT_MAGE:
+		std::cout << "Spec: Combat Mage" << std::endl;
+		break;
+	case HEALER:
+		std::cout << "Spec: Healer" << std::endl;
+		break;
+	default:
+		break;
+	}
+}
+
+void Character::displayMoves(std::vector<Character> chars, int index){
+	int size = chars[index].moves.size();
+	for (int i = 0; i < size; i++)
+	{
+		std::cout << "* Name: " << chars[index].moves[i]->name << std::endl;
+		switch (chars[index].moves[i]->type)
+		{
+		case SINGLE:
+			std::cout << " * Type: single attack" << std::endl;
+			break;
+		case MULTIPLE:
+			std::cout << " * Type: multiple attack" << std::endl;
+			break;
+		case BLOCK:
+			std::cout << " * Type: block" << std::endl;
+			break;
+		default:
+			break;
+		}
+	}
+}

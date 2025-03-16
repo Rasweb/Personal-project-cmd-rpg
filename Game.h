@@ -12,6 +12,7 @@ public:
 	Game();
 	void startMenu();
 	void startGame();
+	void createCharacters();
 
 };
 

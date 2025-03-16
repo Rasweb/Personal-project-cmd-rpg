@@ -46,13 +46,6 @@ class Enemy{
 	int defence;
 }
 
-class Classes{
-	string name;
-}
-
-enum ClassTypes{
-	// Fighter: start - 35 HP / 10 Damage, Thief: start - 30 HP / 2 Damage, Mage: start -  28 HP / 2 Damage 
-}
 
 class Attack{
 	string name;

@@ -27,6 +27,8 @@ public:
 	void getClass(Specs spec);
 	void addMoves(Move* move);
 	std::vector<Character> createChar();
+	void specCheck(std::vector<Character> chars, int index);
+	void displayMoves(std::vector<Character> chars, int index);
 };
 
 #endif 
