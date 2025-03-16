@@ -4,7 +4,10 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include <fstream>
 
+class Character;
 
 class Game{
 private:
@@ -12,8 +15,10 @@ public:
 	Game();
 	void startMenu();
 	void startGame();
-	void createCharacters();
-
+	std::vector<Character> createCharacters();
+	void inGameMenu(std::vector<Character> chars);
+	void savingToTextFile(std::vector<Character> chars, std::string fileName);
+	void loadingFromTextFile(std::string fileName);
 };
 
 #endif

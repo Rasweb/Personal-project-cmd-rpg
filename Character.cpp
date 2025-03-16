@@ -29,15 +29,20 @@ std::vector<Character> Character::createChar() {
 	std::vector<Character> characters;
 
 	int charNumb;
-	std::cout << "How many characters do you want to create?(1-4)" << std::endl;
-	std::cin >> charNumb;
-	while (charNumb <= 0 || charNumb >= 5) {
 
-		std::cout << "Invalid number, must be between 1 and 4" << std::endl;
-		std::cout << "Try again: ";
+	while (1) {
+		std::cout << "How many characters do you want to create?(1-4)" << std::endl;
 		std::cin >> charNumb;
-	}
 
+		if (std::cin.fail() || charNumb <= 0 || charNumb >= 5) {
+			std::cout << "Wrong choice, try again:" << std::endl;
+			std::cin.clear();
+			std::cin.ignore();
+		}
+		else {
+			break;
+		}
+	}
 
 	std::string name;
 	int specChoice, baseHealth, baseMana, baseStrength, baseAgility, baseIntelligence, baseDefence;
@@ -47,13 +52,21 @@ std::vector<Character> Character::createChar() {
 		std::cout << "Enter a name " << std::endl;
 		std::cin >> name;
 
-		std::cout << "Choose a specialiaztion " << std::endl;
-		std::cout << "1: Warrior" << "\n" << "2: Thief" << "\n" << "3: Combat Mage" << "\n" << "4: Healer" << std::endl;
-		std::cin >> specChoice;
+		while (1) {
+			std::cout << "Choose a specialiaztion " << std::endl;
+			std::cout << "1: Warrior" << "\n" << "2: Thief" << "\n" << "3: Combat Mage" << "\n" << "4: Healer" << std::endl;
+			std::cin >> specChoice;
 
-		if (specChoice < 1 || specChoice > 4) {
-			std::cout << "That option dosent exist" << std::endl;
+			if (std::cin.fail() || specChoice < 1 || specChoice > 4) {
+				std::cout << "Wrong choice, try again:" << std::endl;
+				std::cin.clear();
+				std::cin.ignore();
+			}
+			else {
+				break;
+			}
 		}
+
 		Specs s = static_cast<Specs>(specChoice);
 
 		switch (s) {
@@ -149,17 +162,17 @@ void Character::displayMoves(std::vector<Character> chars, int index){
 	int size = chars[index].moves.size();
 	for (int i = 0; i < size; i++)
 	{
-		std::cout << "* Name: " << chars[index].moves[i]->name << std::endl;
+		std::cout << chars[index].moves[i]->name << ", ";
 		switch (chars[index].moves[i]->type)
 		{
 		case SINGLE:
-			std::cout << " * Type: single attack" << std::endl;
+			std::cout << "single attack" << std::endl;
 			break;
 		case MULTIPLE:
-			std::cout << " * Type: multiple attack" << std::endl;
+			std::cout << "multiple attack" << std::endl;
 			break;
 		case BLOCK:
-			std::cout << " * Type: block" << std::endl;
+			std::cout << "block" << std::endl;
 			break;
 		default:
 			break;

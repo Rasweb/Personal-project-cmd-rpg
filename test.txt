@@ -1,0 +1,13 @@
+Characters: 
+
+Char: 1
+Name: e
+Spec: 1
+
+Char: 2
+Name: r
+Spec: 2
+
+Char: 3
+Name: g
+Spec: 4
